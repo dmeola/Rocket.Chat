@@ -76,6 +76,11 @@ Template.sideNav.events
 		SideNav.openFlex()
 		FlowRouter.go 'account'
 
+	'click #hospital': (event) ->
+		SideNav.setFlex "hospitalFlex"
+		SideNav.openFlex()
+		FlowRouter.go 'hospital'
+
 	'click #admin': ->
 		SideNav.setFlex "adminFlex"
 		SideNav.openFlex()

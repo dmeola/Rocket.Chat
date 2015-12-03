@@ -1,16 +1,21 @@
 <template name="channels">
+	{{#each services}}
 	<h3 class="add-room {{isActive}}">
-		{{_ "Channels"}}
+		<!-- {{_ "Channels"}} -->
+		{{service}}
 		{{#if hasPermission 'create-c'}}
 			<i class="icon-plus"></i>
 		{{/if}}
 	</h3>
 	<ul>
 		{{#each rooms}}
-			{{> chatRoomItem }}
+			{{#if equals ../service service}}
+				{{> chatRoomItem}}
+			{{/if}}
 		{{else}}
 			<p class="empty">{{_ "No_channels_yet" }}</p>
 		{{/each}}
 	</ul>
-	<a href="" class="more more-channels">{{_ "More_channels"}} ..</a>
+	{{/each}}
+	<a href="" class="more more-channels">{{_ "More_channels"}} ...</a>
 </template>

@@ -6,8 +6,8 @@ RocketChat.models.Rooms = new class extends RocketChat.models._Base
 		@tryEnsureIndex { 'default': 1 }
 		@tryEnsureIndex { 'usernames': 1 }
 		@tryEnsureIndex { 't': 1 }
+		@tryEnsureIndex { 'service': 1 }
 		@tryEnsureIndex { 'u._id': 1 }
-
 
 	# FIND ONE
 	findOneById: (_id, options) ->
@@ -305,11 +305,12 @@ RocketChat.models.Rooms = new class extends RocketChat.models._Base
 
 
 	# INSERT
-	createWithTypeNameUserAndUsernames: (type, name, user, usernames, extraData) ->
+	createWithTypeNameUserAndUsernames: (type, name, user, usernames, service, extraData) ->
 		room =
 			name: name
 			t: type
 			usernames: usernames
+			service: service
 			msgs: 0
 			u:
 				_id: user._id

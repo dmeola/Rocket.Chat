@@ -12,6 +12,9 @@ Template.chatRoomItem.helpers
 		return 'status-' + (Session.get('user_' + this.name + '_status') or 'offline') if this.t is 'd'
 		return ''
 
+	service: ->
+		return this.service
+
 	name: ->
 		return this.name
 
@@ -34,6 +37,9 @@ Template.chatRoomItem.helpers
 
 	route: ->
 		FlowRouter.path RocketChat.roomTypes.getRoute @t, @
+
+Template.registerHelper 'equals', (a,b) ->
+	if a==b then true
 
 Template.chatRoomItem.rendered = ->
 	if not (FlowRouter.getParam('_id')? and FlowRouter.getParam('_id') is this.data.rid) and not this.data.ls

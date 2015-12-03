@@ -1,4 +1,5 @@
 <template name="listChannelsFlex">
+	{{#each service}}
 	<header>
 		<div>
 			<h4>{{_ "Channels"}}</h4>
@@ -19,6 +20,8 @@
 			</ul>
 		</div>
 	</div>
+
+	{{/each}}
 	<footer>
 		<div>
 		{{#if hasPermission 'create-c'}}

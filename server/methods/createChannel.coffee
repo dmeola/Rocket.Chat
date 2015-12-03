@@ -1,5 +1,5 @@
 Meteor.methods
-	createChannel: (name, members) ->
+	createChannel: (name, members, service) ->
 		if not Meteor.userId()
 			throw new Meteor.Error 'invalid-user', "[methods] createChannel -> Invalid user"
 
@@ -32,7 +32,7 @@ Meteor.methods
 				username: user.username
 
 		# create new room
-		room = RocketChat.models.Rooms.createWithTypeNameUserAndUsernames 'c', name, user, members,
+		room = RocketChat.models.Rooms.createWithTypeNameUserAndUsernames 'c', name, user, members, service,
 			ts: now
 
 		# set creator as channel moderator.  permission limited to channel by scoping to rid

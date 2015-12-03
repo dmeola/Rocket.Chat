@@ -1,4 +1,5 @@
 <template name="chatRoomItem">
+<!-- {{#if equals ../service this.service}} -->
 	<li class="link-room-{{rid}} {{active}} {{#if unread}}has-unread{{/if}} {{#if alert}}has-alert{{/if}}">
 		<a class="open-room" href="{{route}}" title="{{name}}">
 			{{#if unread}}
@@ -14,4 +15,5 @@
 			</span>
 		</a>
 	</li>
+<!-- {{/if}} -->
 </template>

@@ -3,11 +3,12 @@ RocketChat.models.Subscriptions = new class extends RocketChat.models._Base
 		@_initModel 'subscription'
 
 		@tryEnsureIndex { 'rid': 1, 'u._id': 1 }, { unique: 1 }
-		@tryEnsureIndex { 'u._id': 1, 'name': 1, 't': 1 }, { unique: 1 }
+		@tryEnsureIndex { 'u._id': 1, 'name': 1, 't': 1, 'service': 1 }, { unique: 1 }
 		@tryEnsureIndex { 'open': 1 }
 		@tryEnsureIndex { 'alert': 1 }
 		@tryEnsureIndex { 'unread': 1 }
 		@tryEnsureIndex { 'ts': 1 }
+		@tryEnsureIndex { 'service': 1 }
 
 
 	# FIND ONE
@@ -215,6 +216,7 @@ RocketChat.models.Subscriptions = new class extends RocketChat.models._Base
 			rid: room._id
 			name: room.name
 			t: room.t
+			service: room.service
 			u:
 				_id: user._id
 				username: user.username

@@ -2,6 +2,9 @@ Template.listChannelsFlex.helpers
 	channel: ->
 		return Template.instance().channelsList?.get()
 
+	service: ->
+		return Template.instance().servicesList?.get()
+
 Template.listChannelsFlex.events
 	'click header': ->
 		SideNav.closeFlex()
@@ -27,3 +30,6 @@ Template.listChannelsFlex.onCreated ->
 		if result
 			instance.channelsList.set result.channels
 
+	Meteor.call 'servicesList', (err, result) ->
+		if result
+			instance.servicesList.set result.services

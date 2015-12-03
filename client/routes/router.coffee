@@ -65,6 +65,18 @@ FlowRouter.route '/account/:group?',
 		params.group = _.capitalize params.group, true
 		BlazeLayout.render 'main', { center: "account#{params.group}" }
 
+FlowRouter.route '/hospital/:group?',
+	name: 'hospital'
+
+	action: (params) ->
+		RocketChat.TabBar.closeFlex()
+		RocketChat.TabBar.resetButtons()
+
+		unless params.group
+			params.group = 'Subscriptions'
+		params.group = _.capitalize params.group, true
+		BlazeLayout.render 'main', { center: "hospital#{params.group}" }
+
 
 FlowRouter.route '/history/private',
 	name: 'privateHistory'

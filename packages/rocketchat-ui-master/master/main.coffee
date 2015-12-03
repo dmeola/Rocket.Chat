@@ -20,7 +20,7 @@ Template.body.onRendered ->
 				cancelButtonText: t('Cancel')
 				confirmButtonColor: '#DD6B55'
 			, ->
-				subscriptions = ChatSubscription.find({open: true}, { fields: { unread: 1, alert: 1, rid: 1, t: 1, name: 1, ls: 1 } })
+				subscriptions = ChatSubscription.find({open: true}, { fields: { unread: 1, alert: 1, rid: 1, t: 1, service: 1, name: 1, ls: 1 } })
 				for subscription in subscriptions.fetch()
 					if subscription.alert or subscription.unread > 0
 						Meteor.call 'readMessages', subscription.rid
