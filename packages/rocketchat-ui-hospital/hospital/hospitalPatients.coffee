@@ -1,33 +1,17 @@
-Template.hospitalProfile.helpers
-	languages: ->
-		languages = TAPi18n.getLanguages()
-		result = []
-		for key, language of languages
-			result.push _.extend(language, { key: key })
-		return _.sortBy(result, 'key')
+Template.hospitalPatients.helpers
+	patients: ->
+		query =
+			t: { $in: ['c']},
+			open: true
+		patients = ChatSubscription.find query, { sort: 'service': 1, 'name': 1 }
+		console.log 'patients:', patients.fetch()
 
-	userLanguage: (key) ->
-		return (localStorage.getItem('userLanguage') or defaultUserLanguage())?.split('-').shift().toLowerCase() is key
+		if patients?
+			return patients.fetch()
+		else
+			return 'no patients'
 
-	realname: ->
-		return Meteor.user().name
-
-	username: ->
-		return Meteor.user().username
-
-	allowUsernameChange: ->
-		return RocketChat.settings.get("Accounts_AllowUsernameChange")
-
-	usernameChangeDisabled: ->
-		return t('Username_Change_Disabled')
-
-	allowPasswordChange: ->
-		return RocketChat.settings.get("Accounts_AllowPasswordChange")
-
-	passwordChangeDisabled: ->
-		return t('Password_Change_Disabled')
-
-Template.hospitalProfile.onCreated ->
+Template.hospitalPatients.onCreated ->
 	settingsTemplate = this.parentTemplate(3)
 	settingsTemplate.child ?= []
 	settingsTemplate.child.push this
@@ -96,13 +80,15 @@ Template.hospitalProfile.onCreated ->
 				if error
 					toastr.error error.reason
 
-Template.hospitalProfile.onRendered ->
+Template.hospitalPatients.onRendered ->
 	Tracker.afterFlush ->
 		# this should throw an error-template
 		FlowRouter.go("home") if !RocketChat.settings.get("Accounts_AllowUserProfileChange")
 		SideNav.setFlex "hospitalFlex"
 		SideNav.openFlex()
 
-Template.hospitalProfile.events
+		$('#patient-table').DataTable();
+
+Template.hospitalPatients.events
 	'click .submit button': (e, t) ->
 		t.save()

@@ -21,17 +21,20 @@ Package.onUse(function(api) {
 		'rocketchat:lib@0.0.1'
 	]);
 
+	api.addFiles('lib/DataTables/datatables.min.js', 'client');
+	api.addFiles('lib/DataTables/datatables.min.css', 'client');
+
 	api.addFiles('hospital/hospital.html', 'client');
 	api.addFiles('hospital/hospitalFlex.html', 'client');
-	// api.addFiles('hospital/hospitalSubscriptions.html', 'client');
-	// api.addFiles('hospital/hospitalServices.html', 'client');
-	// api.addFiles('hospital/hospitalPatients.html', 'client');
+	api.addFiles('hospital/hospitalSubscriptions.html', 'client');
+	api.addFiles('hospital/hospitalServices.html', 'client');
+	api.addFiles('hospital/hospitalPatients.html', 'client');
 
 	api.addFiles('hospital/hospital.coffee', 'client');
 	api.addFiles('hospital/hospitalFlex.coffee', 'client');
-	// api.addFiles('hospital/hospitalSubscriptions.coffee', 'client');
-	// api.addFiles('hospital/hospitalServices.coffee', 'client');
-	// api.addFiles('hospital/hospitalPatients.coffee', 'client');
+	api.addFiles('hospital/hospitalSubscriptions.coffee', 'client');
+	api.addFiles('hospital/hospitalServices.coffee', 'client');
+	api.addFiles('hospital/hospitalPatients.coffee', 'client');
 
 	// api.addAssets('styles/side-nav.less', 'client');
 });

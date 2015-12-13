@@ -1,20 +1,19 @@
 <template name="hospitalFlex">
 	<header>
 		<div>
-			<h4><!-- {{_ "My_Hospital"}} -->My Hospital</h4>
+			<h4>{{_ "My_Hospital"}}</h4>
 		</div>
 	</header>
 	<div class="content">
 		<div class="wrapper">
 			<ul>
 				<li>
-					<a href="{{pathFor 'hospital' group='subscriptions'}}" class="hospital-link"><!-- {{_ "Subscriptions"}} -->Subscriptions</a>
+					<a href="{{pathFor 'hospital' group='subscriptions'}}" class="hospital-link">{{_ "Subscriptions"}}</a>
 					<!-- {{#if allowUserProfileChange}} -->
-						<a href="{{pathFor 'hospital' group='services'}}" class="hospital-link"><!-- {{_ "Services"}} -->Services</a>
-						<a href="{{pathFor 'hospital' group='patients'}}" class="hospital-link"><!-- {{_ "Patients"}} -->Patients</a>
+						<a href="{{pathFor 'hospital' group='services'}}" class="hospital-link">{{_ "Services"}}</a>
+						<a href="{{pathFor 'hospital' group='patients'}}" class="hospital-link">{{_ "Patients"}}</a>
 					<!-- {{/if}} -->
 
-					{{!-- move this to profile --}}
 				</li>
 			</ul>
 		</div>

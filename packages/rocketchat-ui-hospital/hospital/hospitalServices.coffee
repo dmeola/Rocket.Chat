@@ -1,19 +1,26 @@
-Template.hospitalPreferences.helpers
-	checked: (property, value, defaultValue) ->
-		if not Meteor.user()?.settings?.preferences?[property]? and defaultValue is true
-			currentValue = value
-		else if Meteor.user()?.settings?.preferences?[property]?
-			currentValue = !!Meteor.user()?.settings?.preferences?[property]
+Template.hospitalServices.helpers
+	# TODO: return dynamic list of services
+	services: ->
+		services = [
+			{service : 'nccu'},
+			{service : 'trauma'},
+			{service : 'acs'},
+			{service : 'boneMarrowTransplants'},
+			{service : 'med'},
+			{service : 'heme'}
+			]
+		services = _.uniq(ChatSubscription.find({}).distinct('service', true)
 
-		return currentValue is value
+		console.log(services)
+		return services
 
-	desktopNotificationEnabled: ->
-		return (KonchatNotification.notificationStatus.get() is 'granted') or (window.Notification && Notification.permission is "granted")
+	subscribed: (service) ->
+		if subscribed 
+			return 'checked'
+		else
+			return ''
 
-	desktopNotificationDisabled: ->
-		return (KonchatNotification.notificationStatus.get() is 'denied') or (window.Notification && Notification.permission is "denied")
-
-Template.hospitalPreferences.onCreated ->
+Template.hospitalServices.onCreated ->
 	settingsTemplate = this.parentTemplate(3)
 	settingsTemplate.child ?= []
 	settingsTemplate.child.push this
@@ -51,12 +58,14 @@ Template.hospitalPreferences.onCreated ->
 			if error
 				toastr.error error.reason
 
-Template.hospitalPreferences.onRendered ->
+Template.hospitalServices.onRendered ->
 	Tracker.afterFlush ->
 		SideNav.setFlex "hospitalFlex"
 		SideNav.openFlex()
 
-Template.hospitalPreferences.events
+		$('#service-table').DataTable();
+
+Template.hospitalServices.events
 	'click .submit button': (e, t) ->
 		t.save()
 

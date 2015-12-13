@@ -4,6 +4,7 @@ RocketChat.models.Subscriptions = new class extends RocketChat.models._Base
 
 		@tryEnsureIndex { 'rid': 1, 'u._id': 1 }, { unique: 1 }
 		@tryEnsureIndex { 'u._id': 1, 'name': 1, 't': 1, 'service': 1 }, { unique: 1 }
+		@tryEnsureIndex { 'u._id': 1}
 		@tryEnsureIndex { 'open': 1 }
 		@tryEnsureIndex { 'alert': 1 }
 		@tryEnsureIndex { 'unread': 1 }

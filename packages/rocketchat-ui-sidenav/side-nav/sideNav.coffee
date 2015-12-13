@@ -88,6 +88,9 @@ Template.sideNav.events
 	'click .account-link': ->
 		menu.close()
 
+	'click .hospital-link': ->
+		menu.close()
+
 Template.sideNav.onRendered ->
 	SideNav.init()
 	menu.init()
