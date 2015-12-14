@@ -9,7 +9,7 @@ Template.hospitalServices.helpers
 			{service : 'med'},
 			{service : 'heme'}
 			]
-		services = _.uniq(ChatSubscription.find({}).distinct('service', true)
+		#services = ChatSubscription.distinct 'service'
 
 		console.log(services)
 		return services

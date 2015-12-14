@@ -10,6 +10,22 @@ Template.channels.helpers
 		# 	t: { $in: ['c']},
 		# 	open: true
 		# TODO: return distinct services from ChatRoom collection
+		services = ChatSubscription.find().fetch()
+		distinctServicesArray = _.uniq(services, false, (data) ->
+			return data.service
+			)
+		distinctServiceValues = _.pluck(distinctServicesArray, 'service')
+		
+		servicesArray = [];
+		for counter in [0..distinctServiceValues.length]
+			servicesArray.push({service : distinctServiceValues[counter]})
+			console.log('distinctServiceValues[counter]: ' + distinctServiceValues[counter])
+
+		console.log('servicesArray: ' + JSON.stringify(servicesArray))
+		console.log('distinctServiceValues.length: ' + distinctServiceValues.length)
+		
+		return servicesArray
+
 		return [
 				{service : 'nccu'},
 				{service : 'trauma'},
@@ -18,7 +34,6 @@ Template.channels.helpers
 				{service : 'med'},
 				{service : 'heme'}
 				]
-		#ChatRoom.find().distinct('group')
 
 	rooms: ->
 		query =
